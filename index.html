@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang ="en-us">
+<head>
+
+<meta charset="UTF-8">
+  <title>DGN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://code.jquery.com/jquery.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style>
+
+.row
+{
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-width: 2px;
+	border-top-width: 2px;
+}
+
+.mainRating
+{
+	padding: 20px;
+	margin: 5px;
+	background-color:red;
+	
+}
+
+.container
+{
+	width: 80%;
+	/*adjust this based on screen size.  Big screens its 70%, medium screens its 80%, small screens its 100%*/
+}
+</style>
+
+  </head>
+
+  <body onload = "fillTables()">
+
+<div class = "container">
+</div>
+
+  	<script>
+
+	function fillTables (){
+	  $.get("/api/tables", function(data) {
+        console.log(data);
+
+for (var i = 0; i < data.length; i++) 
+        {
+          $(".container").append("<div class = 'row'> <div class = 'col-md-10'><p style = 'font-size: 24px'>" + data[i].title + "</p>" + data[i].rel.substring(0, 10) + "</div><col-md-2>" + "<span class = 'mainRating'>" + data[i].rating + "</span></div></div>");
+    }
+
+
+      });
+
+
+	}
+</script>
+  </body>
+  </html>
