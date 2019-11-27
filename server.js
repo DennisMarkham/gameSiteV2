@@ -69,7 +69,11 @@ app.get("/api/tables", function(req, res) {
 
 });
 
-app.get("/Crysis2", function(req, res) {
-  //connection.end();
-  res.sendFile(path.join(__dirname, "Crysis2.html"));
+app.get("/:game", function(req, res) {
+  var chosen = req.params.game;
+  res.sendFile(path.join(__dirname, chosen + ".html"));
   });
+
+//oh my gosh it works!
+//ahem, this nifty little bit works in conjunction with the dynamically generated href 
+//attributes in the cards, to direct the readers to the review page of a certain game

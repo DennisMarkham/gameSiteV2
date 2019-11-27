@@ -82,6 +82,7 @@ github before-->
 
   	<script>
 
+//this function fills the website with data from the SQL table
 	function fillTables (){
 	  $.get("/api/tables", function(data) {
         console.log(data);
@@ -90,6 +91,9 @@ for (var i = 0; i < data.length; i++)
         {
           $(".container").append("<div class = 'row'> <div class = 'col-md-10'><p style = 'font-size: 24px'>" + data[i].title + "</p>" + data[i].rel.substring(0, 10) + "</div><col-md-2>" + "<span class = 'mainRating'>" + data[i].rating + "</span></div></div>");
     }
+
+//this section is for fill the three cards, which catalog the three most recently released games
+//in the database.
 
 var title1 = data[0].title;
 var title2 = data[1].title;
@@ -109,17 +113,14 @@ $("#card2 .card-title").text(title2);
 $("#card3 .card-title").text(title3);
 
 
+//this last bit, which I'm quite proud of, removes the space from the title, and dynamically generates links to each review page in conjuction with code in server.js.
 $("#card1 a").attr("href", title1.replace(/\s/g, ''));
 
 $("#card2 a").attr("href", title2.replace(/\s/g, ''));
 
 $("#card3 a").attr("href", title3.replace(/\s/g, ''));
 
-//okay, this seems to work, except while the a hrefs are filled in correctly, they don't 
-//seem to work as...modularly (is that right word) as I'd like.  I have to not only create
-//the page, but put a corresponding path in the server.js.  What if I use variable, that thing 
-//with the ":"
-//yeah, I should totally look into that.  But for now I'm uploading what I've got.
+
 
 
       });
