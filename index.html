@@ -32,12 +32,51 @@
 	width: 80%;
 	/*adjust this based on screen size.  Big screens its 70%, medium screens its 80%, small screens its 100%*/
 }
+
+.card
+{
+	width: 400px;
+}
 </style>
 
   </head>
 
   <body onload = "fillTables()">
 
+<div class = "gameCards">
+
+	<div class="card" id = "card1">
+  <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="#" class="btn btn-primary">See Review</a>
+  </div>
+</div>
+
+<div class="card" id = "card2">
+  <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="#" class="btn btn-primary">See Review</a>
+  </div>
+</div>
+
+<div class="card" id = "card3">
+  <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title" id = "card2">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="#" class="btn btn-primary">See Review</a>
+  </div>
+</div>
+
+</div>
+
+
+<!-- //what the hell!?  Out of nowhere the boxes for the ratings stopped lining up with the rows!  Even after I deleted the new card stuff I put in. Goddamit I wish I'd saved this stuff on 
+github before-->
 <div class = "container">
 </div>
 
@@ -52,6 +91,18 @@ for (var i = 0; i < data.length; i++)
           $(".container").append("<div class = 'row'> <div class = 'col-md-10'><p style = 'font-size: 24px'>" + data[i].title + "</p>" + data[i].rel.substring(0, 10) + "</div><col-md-2>" + "<span class = 'mainRating'>" + data[i].rating + "</span></div></div>");
     }
 
+$("#card1 .card-img-top").attr("src", data[0].image);
+
+$("#card2 .card-img-top").attr("src", data[1].image);
+
+$("#card3 .card-img-top").attr("src", data[2].image);
+
+
+$("#card1 .card-title").text(data[0].title);
+
+$("#card2 .card-title").text(data[1].title);
+
+$("#card3 .card-title").text(data[2].title);
 
       });
 
