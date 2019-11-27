@@ -68,3 +68,8 @@ app.get("/api/tables", function(req, res) {
 
 
 });
+
+app.get("/Crysis2", function(req, res) {
+  //connection.end();
+  res.sendFile(path.join(__dirname, "Crysis2.html"));
+  });
