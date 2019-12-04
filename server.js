@@ -77,3 +77,37 @@ app.get("/:game", function(req, res) {
 //oh my gosh it works!
 //ahem, this nifty little bit works in conjunction with the dynamically generated href 
 //attributes in the cards, to direct the readers to the review page of a certain game
+
+
+//cheerio stuff 
+// Parses our HTML and helps us find elements
+var cheerio = require("cheerio");
+// Makes HTTP request for HTML page
+var request = require("request");
+
+
+
+
+request("http://localhost:3000/Crysis2", function(error, response, html) {
+
+ 
+  var $ = cheerio.load(html);
+
+  var results = [];
+
+
+  //DON'T NEED 'EACH'
+  $(".verdict").each(function(i, element) {
+
+   
+    var paragraphText = $(element).text();
+
+    
+    results.push({
+      paragraphText: paragraphText
+    });
+  });
+
+
+  console.log(results[0]);
+});
