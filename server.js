@@ -47,7 +47,7 @@ function fill() {
   connection.query("SELECT * FROM games ORDER BY rel DESC;", function(err, result) {
     if (err) throw err;
     
-    console.log(result);
+
  
     var i;
    
@@ -68,7 +68,8 @@ app.get("/api/tables", function(req, res) {
 //quotes stuff BEGINS
 //**************
 
-request("http://localhost:3000/Crysis2", function(error, response, html) {
+//now we need to work some kind of variable into this request
+request("http://localhost:3000/" + gamesArray[0].title, function(error, response, html) {
 
 console.log("Does request fire?"); 
   var $ = cheerio.load(html);
@@ -76,7 +77,7 @@ console.log("Does request fire?");
   var quotes = [];
 
 
-  //DON'T NEED 'EACH'
+  //DON'T NEED 'EACH'?
   $(".verdict").each(function(i, element) {
 
    
@@ -85,7 +86,7 @@ console.log("Does request fire?");
     
     quotes.push(paragraphText);
 
-  //this fires but returns object object
+ 
   console.log("This is one where the game is variable:" + quotes[0]);
 
   app.get("/api/quotes", function(req, res) {
@@ -100,6 +101,7 @@ console.log("Does request fire?");
 //quotes stuff (request stuff) ENDS
 //****************
 
+  //database connection thing ends here
   });
 
 //fill ends here
