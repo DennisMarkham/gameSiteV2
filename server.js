@@ -70,7 +70,7 @@ app.get("/api/tables", function(req, res) {
 
 request("http://localhost:3000/Crysis2", function(error, response, html) {
 
- 
+console.log("Does request fire?"); 
   var $ = cheerio.load(html);
 
   var quotes = [];
@@ -83,11 +83,9 @@ request("http://localhost:3000/Crysis2", function(error, response, html) {
     var paragraphText = $(element).text();
 
     
-    quotes.push({
-      paragraphText: paragraphText
-    });
+    quotes.push(paragraphText);
 
-  //this one never seems to fire
+  //this fires but returns object object
   console.log("This is one where the game is variable:" + quotes[0]);
 
   app.get("/api/quotes", function(req, res) {
@@ -107,7 +105,7 @@ request("http://localhost:3000/Crysis2", function(error, response, html) {
 //fill ends here
 }
 
-// connection.end();
+
 
 
 

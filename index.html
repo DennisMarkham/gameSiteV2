@@ -41,7 +41,7 @@
 
   </head>
 
-  <body onload = "fillTables()">
+  <body onload = "fillTables(), fillCardQuotes()">
 
 <div class = "gameCards">
 
@@ -81,6 +81,14 @@ github before-->
 </div>
 
   	<script>
+
+  		function fillCardQuotes()
+  		{
+  			$.get("/api/quotes", function(data){
+  				console.log(data);
+  				$("#card1 .card-text").append(data);
+  			})
+  		}
 
 //this function fills the website with data from the SQL table
 	function fillTables (){
