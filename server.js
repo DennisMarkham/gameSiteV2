@@ -4,6 +4,12 @@ var path = require("path");
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
+//cheerio stuff 
+// Parses our HTML and helps us find elements
+var cheerio = require("cheerio");
+// Makes HTTP request for HTML page
+var request = require("request");
+
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -52,13 +58,53 @@ function fill() {
 
 console.log(gamesArray);
 
+
+
 app.get("/api/tables", function(req, res) {
   return res.json(gamesArray);
 });
 
 
+//quotes stuff BEGINS
+//**************
+
+request("http://localhost:3000/Crysis2", function(error, response, html) {
+
+ 
+  var $ = cheerio.load(html);
+
+  var quotes = [];
+
+
+  //DON'T NEED 'EACH'
+  $(".verdict").each(function(i, element) {
+
+   
+    var paragraphText = $(element).text();
+
+    
+    quotes.push({
+      paragraphText: paragraphText
+    });
+
+  //this one never seems to fire
+  console.log("This is one where the game is variable:" + quotes[0]);
+
+  app.get("/api/quotes", function(req, res) {
+  return res.json(quotes);
+});
+
+//"verdict" scraping ends here
+  });
+
+
+});
+//quotes stuff (request stuff) ENDS
+//****************
 
   });
+
+//fill ends here
 }
 
 // connection.end();
@@ -79,15 +125,13 @@ app.get("/:game", function(req, res) {
 //attributes in the cards, to direct the readers to the review page of a certain game
 
 
-//cheerio stuff 
-// Parses our HTML and helps us find elements
-var cheerio = require("cheerio");
-// Makes HTTP request for HTML page
-var request = require("request");
 
 
 
 
+//so what I'm thinking...this has to be placed where the games array has been declared
+//(scope and all that).  Three of these will be placed, the variable being item 0, 1, and 2
+//in the games array.  In fact, let's keep this, as a model, and try to do some of that.
 request("http://localhost:3000/Crysis2", function(error, response, html) {
 
  
@@ -109,5 +153,5 @@ request("http://localhost:3000/Crysis2", function(error, response, html) {
   });
 
 
-  console.log(results[0]);
+  console.log("This is the model: " + results[0].paragraphText);
 });
