@@ -65,40 +65,51 @@ app.get("/api/tables", function(req, res) {
 });
 
 //formats the game title for the request
-var card1url = gamesArray[0].title
+
 
 //quotes stuff BEGINS
 //**************
 
-//now we need to work some kind of variable into this request
-request("http://localhost:3000/" + card1url.replace(/\s/g, ''), function(error, response, html) {
+//declare array to fill with quotes
+var quotes = [];
 
+function cardQuotes(cardTitle){
+request("http://localhost:3000/" + cardTitle.replace(/\s/g, ''), function(error, response, html) {
+
+var cardText = "";
 console.log("Does request fire?"); 
   var $ = cheerio.load(html);
 
-  var quotes = [];
+  
 
 
   //DON'T NEED 'EACH'?
   $(".verdict").each(function(i, element) {
 
    
-    var paragraphText = $(element).text();
+    cardText = $(element).text();
 
-    
-    quotes.push(paragraphText);
-
- 
-  console.log("This is one where the game is variable:" + quotes[0]);
-
-  app.get("/api/quotes", function(req, res) {
-  return res.json(quotes);
-});
 
 //"verdict" scraping ends here
   });
 
+return cardText;
 
+});
+}
+//function ends here
+
+//uses cardQuotes function established above to fill quotes array
+quotes.push(cardQuotes(gamesArray[0].title));
+quotes.push(cardQuotes(gamesArray[1].title));
+quotes.push(cardQuotes(gamesArray[2].title));
+
+console.log("Here's the quotes array: " + quotes);
+//just shows up black, hmmm
+
+
+  app.get("/api/quotes", function(req, res) {
+  return res.json(quotes);
 });
 //quotes stuff (request stuff) ENDS
 //****************
