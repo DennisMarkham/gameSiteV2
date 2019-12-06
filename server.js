@@ -64,12 +64,14 @@ app.get("/api/tables", function(req, res) {
   return res.json(gamesArray);
 });
 
+//formats the game title for the request
+var card1url = gamesArray[0].title
 
 //quotes stuff BEGINS
 //**************
 
 //now we need to work some kind of variable into this request
-request("http://localhost:3000/" + gamesArray[0].title, function(error, response, html) {
+request("http://localhost:3000/" + card1url.replace(/\s/g, ''), function(error, response, html) {
 
 console.log("Does request fire?"); 
   var $ = cheerio.load(html);
