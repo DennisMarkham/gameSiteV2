@@ -23,7 +23,9 @@
 {
 	padding: 20px;
 	margin: 5px;
+	text-align: center;
 	background-color:red;
+	display:block;
 	
 }
 
@@ -75,8 +77,7 @@
 </div>
 
 
-<!-- //what the hell!?  Out of nowhere the boxes for the ratings stopped lining up with the rows!  Even after I deleted the new card stuff I put in. Goddamit I wish I'd saved this stuff on 
-github before-->
+
 <div class = "container">
 </div>
 
@@ -97,7 +98,7 @@ github before-->
 
 for (var i = 0; i < data.length; i++) 
         {
-          $(".container").append("<div class = 'row'> <div class = 'col-md-10'><p style = 'font-size: 24px'>" + data[i].title + "</p>" + data[i].rel.substring(0, 10) + "</div><col-md-2>" + "<span class = 'mainRating'>" + data[i].rating + "</span></div></div>");
+          $(".container").append("<div class = 'row'> <div class = 'col-md-10'><p style = 'font-size: 24px'>" + data[i].title + "</p>" + data[i].rel.substring(0, 10) + "</div><div class = 'col-md-1'>" + "<span class = 'mainRating'>" + data[i].rating + "</span></div><div class = 'col-md-1'></div></div>");
     }
 
 //this section is for fill the three cards, which catalog the three most recently released games

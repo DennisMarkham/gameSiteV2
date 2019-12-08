@@ -74,13 +74,16 @@ app.get("/api/tables", function(req, res) {
 var quotes = [];
 
 function cardQuotes(cardTitle){
+  var cardText = "";  
+// var cardTextArray = [];
 request("http://localhost:3000/" + cardTitle.replace(/\s/g, ''), function(error, response, html) {
 
-var cardText = "";
+
 console.log("Does request fire?"); 
   var $ = cheerio.load(html);
 
   
+
 
 
   //DON'T NEED 'EACH'?
@@ -89,16 +92,24 @@ console.log("Does request fire?");
    
     cardText = $(element).text();
 
-
-//"verdict" scraping ends here
+// cardTextArray.push({cardText: cardText});
   });
 
-return cardText;
+
 
 });
+
+//Dammit I've tried so many things.  Turning it into an array, turning it into an array of objects.  
+//Ugh.
+//I can't seem to get the results of the scraping into a variable to be returned, that's the
+//problem.
+// return cardTextArray[0].cardText
+return cardText;
 }
 //function ends here
 
+//this shows up already but for some reason the function never returns anything
+console.log("Games array zero title:" + gamesArray[0].title)
 //uses cardQuotes function established above to fill quotes array
 quotes.push(cardQuotes(gamesArray[0].title));
 quotes.push(cardQuotes(gamesArray[1].title));
