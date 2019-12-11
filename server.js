@@ -128,9 +128,20 @@ console.log("Here's the quotes array: " + quotes);
   //database connection thing ends here
   });
 
-//fill ends here
-}
 
+
+//this ends the connection so that you don't get that "can't enque handshake twice" thing
+//error is "document is not definted"
+// document.getElementsByTagName("a").onclick = function() {
+//   console.log("Firing connection ending function");
+//   connection.end();
+// };
+
+//fill ends here
+
+connection.end();
+//this causes "cannot invoke handshake after invoking quit"
+}
 
 
 
@@ -140,6 +151,8 @@ console.log("Here's the quotes array: " + quotes);
 });
 
 app.get("/:game", function(req, res) {
+  // connection.end();
+  //trying to use that here gives me "cannot invoke handshake after invoking quit"
   var chosen = req.params.game;
   res.sendFile(path.join(__dirname, chosen + ".html"));
   });
