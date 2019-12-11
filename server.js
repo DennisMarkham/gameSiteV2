@@ -36,12 +36,13 @@ app.get("/", function(req, res) {
   //connection.end();
   res.sendFile(path.join(__dirname, "index.html"));
   
-
-connection.connect(function(err){
-  if (err) throw err;
-  console.log("connected as id " + connection.threadId);
-  fill();
-});
+fill();
+// connection(function(err){
+//   if (err) throw err;
+//   console.log("connected as id " + connection.threadId);
+//   fill();
+// });
+//this is unneccessary, what else could I streamline by getting rid of this!
 
 function fill() {
   connection.query("SELECT * FROM games ORDER BY rel DESC;", function(err, result) {
@@ -139,7 +140,7 @@ console.log("Here's the quotes array: " + quotes);
 
 //fill ends here
 
-connection.end();
+// connection.end();
 //this causes "cannot invoke handshake after invoking quit"
 }
 
