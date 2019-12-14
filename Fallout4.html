@@ -6,6 +6,8 @@
    <script src="https://code.jquery.com/jquery.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <style>
 
 /*What the hell?  Why isn't this working anymore?*/
@@ -158,6 +160,8 @@ img {
 </style>
 </head>
 
+<div ng-app="myApp" ng-controller="myCtrl">
+
 <body>
 	<h1>Fallout 4 Review</h1>
 	<hr>
@@ -169,22 +173,22 @@ img {
 <div class="container">
   <div class="mySlides">
     <div class="numbertext">1 / 4</div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzfXtsrUsxK4T8_UD9kjtsWSQSrlkSMNeNL6a53vlZwV7JnF0fw&s" style="width:100%">
+    <img src={{pic1}} style="width:100%">
   </div>
 
   <div class="mySlides">
     <div class="numbertext">2 / 4</div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk9OssXBCH7s68sDfIANyujlgO9WmewBeagugSNWtQQ_lvWq4O6A&s" style="width:100%">
+    <img src={{pic2}} style="width:100%">
   </div>
 
   <div class="mySlides">
     <div class="numbertext">3 / 4</div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV1fbD5Yb1uMW4296-0liL8aaTfBtHFdhec10ZZRaSgELtDkXA&s" style="width:100%">
+    <img src={{pic3}} style="width:100%">
   </div>
     
   <div class="mySlides">
     <div class="numbertext">4 / 4</div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6o4pFnmpsfO0ZKUM_GASds_BlBaymaEK6VnBspI5in8jZkej&s" style="width:100%">
+    <img src={{pic4}} style="width:100%">
   </div>
 
 <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -194,21 +198,43 @@ img {
 <!-- You know, right here, it would be great to have some variables in the url.  Maybe I should try rewriting this in angular later.  But for now... -->
   <div class="row" style = "border-top-style:solid; border-top-width:2px;">
     <div class="column">
-      <img class="demo cursor" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzfXtsrUsxK4T8_UD9kjtsWSQSrlkSMNeNL6a53vlZwV7JnF0fw&s" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+      <img class="demo cursor" src={{pic1}} style="width:100%" onclick="currentSlide(1)" alt="The Woods">
     </div>
     <div class="column">
-      <img class="demo cursor" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk9OssXBCH7s68sDfIANyujlgO9WmewBeagugSNWtQQ_lvWq4O6A&s" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+      <img class="demo cursor" src={{pic2}} style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
     </div>
     <div class="column">
-      <img class="demo cursor" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV1fbD5Yb1uMW4296-0liL8aaTfBtHFdhec10ZZRaSgELtDkXA&s" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+      <img class="demo cursor" src={{pic3}} style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
     </div>
     <div class="column">
-      <img class="demo cursor" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6o4pFnmpsfO0ZKUM_GASds_BlBaymaEK6VnBspI5in8jZkej&s" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+      <img class="demo cursor" src={{pic4}} style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
     </div>
   </div>
 </div>
 
 	<p> <span class = "verdict"> I think this game is great, like really really great.</span>  </p>
+
+
+</div>
+<!-- ending AngularJS scope controller thing -->
+
+
+<!-- ANGULAR SCRIPTS HERE -->
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.pic1 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXzfXtsrUsxK4T8_UD9kjtsWSQSrlkSMNeNL6a53vlZwV7JnF0fw&s";
+
+    $scope.pic2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk9OssXBCH7s68sDfIANyujlgO9WmewBeagugSNWtQQ_lvWq4O6A&s";
+
+    $scope.pic3 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV1fbD5Yb1uMW4296-0liL8aaTfBtHFdhec10ZZRaSgELtDkXA&s";
+
+    $scope.pic4 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6o4pFnmpsfO0ZKUM_GASds_BlBaymaEK6VnBspI5in8jZkej&s";
+
+});
+</script>
+<!-- ****** -->
+
 
 <script>
 var slideIndex = 1;
