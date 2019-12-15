@@ -1,5 +1,16 @@
 /*What the hell?  Why isn't this working anymore?*/
 
+.RR
+{
+  background-color: red;
+  position: absolute;  
+}
+
+.RRBox
+{
+  border-style: solid;
+  border-width: 2px;
+}
 
 body
 {
